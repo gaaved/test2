@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+
+  test-db-test:
+    image: mysql:latest
+    environment:
+      MYSQL_PASSWORD: root
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: test-db
+
+  test-api:
+    build:
+      context: ./.
+      dockerfile: ./docker/ci/Dockerfile
+    stdin_open: true
+    tty: true
+    depends_on:
+      - test-db-test
+      
