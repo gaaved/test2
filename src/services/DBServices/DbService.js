@@ -1,4 +1,4 @@
-const { User } = require('../../database/models');
+const { User, Role, Department, Comment } = require('../../database/models');
 
 /**
  * Get all user
@@ -12,7 +12,25 @@ const findOneUser = async (id) => User.findOne({
     where: {
         id: id
     },
-    include: ['roles', 'department'],
+    // include: ['roles', 'department'],
+    include: [
+        {
+            model: Role,
+            attributes:['roleId'],
+            as: 'roles',
+        },
+        {
+            model: Department,
+            attributes:['departmentName'],
+            as: 'department',
+        },
+        {
+            model: Comment,
+            attributes:['comment'],
+            as: 'comment',
+        },
+    ],
+    attributes: [ 'id', 'name', 'age', 'imageName' ],
 });
 
 /**
