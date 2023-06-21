@@ -1,4 +1,3 @@
-'use strict';
 const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
@@ -18,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
       });
       this.hasMany(models.Comment, {
         foreignKey: 'userId',
-        as: 'comment',
+        as: 'comments',
       });
     }
   }
